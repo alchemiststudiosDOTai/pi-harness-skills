@@ -17,19 +17,13 @@ Harness Engineering skill pack for [pi](https://www.npmjs.com/package/@mariozech
 ### npm
 
 ```bash
-pi install npm:@alchemiststudios/pi-harness-skills
+pi install npm:@alchemiststudios/pi-harness-skills@0.1.1
 ```
 
 ### Git
 
 ```bash
 pi install git:github.com/alchemiststudiosDOTai/pi-harness-skills@v0.1.1
-```
-
-### Local path
-
-```bash
-pi install /absolute/path/to/pi-harness-package
 ```
 
 ## Included skills
