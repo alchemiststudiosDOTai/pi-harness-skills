@@ -1,6 +1,6 @@
 {
   "name": "@alchemiststudios/pi-harness-skills",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Harness engineering skills package for pi",
   "license": "MIT",
   "publishConfig": {
