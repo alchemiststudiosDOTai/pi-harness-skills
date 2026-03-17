@@ -23,7 +23,7 @@ pi install npm:@alchemiststudios/pi-harness-skills
 ### Git
 
 ```bash
-pi install git:github.com/alchemiststudiosDOTai/pi-harness-skills@v0.1.0
+pi install git:github.com/alchemiststudiosDOTai/pi-harness-skills@v0.1.1
 ```
 
 ### Local path
