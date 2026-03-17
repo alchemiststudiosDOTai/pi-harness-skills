@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Harness engineering skills package for pi",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": ["pi-package", "skills", "harness-engineering"],
   "files": [
     "skills/**",
