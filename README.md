@@ -38,6 +38,7 @@ pi install git:github.com/alchemiststudiosDOTai/pi-harness-skills
 | `ast-grep-setup` | Bootstrap ast-grep rules and rule tests |
 | `agents-md-mapper` | Build/refresh evidence-grounded `AGENTS.md` |
 | `differential-session-runner` | Durable differential debugging session workflow |
+| `docs-frontmatter-ontology` | Standardize Markdown docs frontmatter + ontology_relations and enforce via pre-push hook |
 
 ## Quick usage
 
