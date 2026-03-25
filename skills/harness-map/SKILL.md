@@ -1,7 +1,7 @@
 ---
 name: harness-map
 description: "Map a repository's mechanical harness layers: canonical check command, local and CI gates, architecture boundaries, structural rules, behavioral verification, docs ratchets, evidence workflows, and operator-facing surfaces. Use when you need to understand how a repo keeps change safe."
-writes-to: memory-bank/research/
+writes-to: HARNESS.md
 allowed-tools:
   - Read
   - Write
@@ -204,9 +204,11 @@ Capture:
 
 ### 9. Synthesize the harness map
 
-Write a research artifact to:
+Write the harness map directly to the repository root as:
 
-`memory-bank/research/YYYY-MM-DD_HH-MM-SS_<repo>-harness-map.md`
+`HARNESS.md`
+
+This file serves as the single source of truth for how this repository keeps change safe. Write it in a style that a new developer or agent can use to understand the harness immediately.
 
 Recommended structure:
 
@@ -219,29 +221,75 @@ owner: "<agent_or_user>"
 tags: [research, harness, <repo>]
 ---
 
+# <repo> – Harness Map
+
+A living map of the mechanical checks, policies, workflows, and artifacts that make change safe in this repository.
+
 ## Canonical Entry Point
 - `path:line-line` → command and subcommands
 
 ## Harness Layers
-### Layer 1: Local checks
-### Layer 2: Architecture boundaries
-### Layer 3: Structural rules
-### Layer 4: Behavioral verification
-### Layer 5: Docs ratchet
-### Layer 6: CI matrix
-### Layer 7: Evidence workflow
-### Layer 8: Operator surface
+
+### Layer 1: Local Checks
+| Check | Command | Config | Enforces |
+|-------|---------|--------|----------|
+| ... | ... | ... | ... |
+
+### Layer 2: Architecture Boundaries
+| Contract | Source | Forbidden | Config |
+|----------|--------|-----------|--------|
+| ... | ... | ... | ... |
+
+### Layer 3: Structural Rules
+| Rule Set | Config | Test Location | Notes |
+|----------|--------|---------------|-------|
+| ... | ... | ... | ... |
+
+### Layer 4: Behavioral Verification
+| Test Suite | Command | Snapshot/Golden Location | Notes |
+|------------|---------|--------------------------|-------|
+| ... | ... | ... | ... |
+
+### Layer 5: Docs Ratchet
+| Check | Command | Allowlist | Notes |
+|-------|---------|-----------|-------|
+| ... | ... | ... | ... |
+
+### Layer 6: CI Matrix
+| Job | Triggers | Gate | Config |
+|-----|----------|------|--------|
+| ... | ... | ... | ... |
+
+### Layer 7: Evidence Workflow
+| Artifact | Location | Triggers | Format |
+|----------|----------|----------|--------|
+| ... | ... | ... | ... |
+
+### Layer 8: Operator Surface
+| Surface | Location | Purpose | Usage |
+|---------|----------|---------|-------|
+| ... | ... | ... | ... |
+
+## Command Chain
+Ordered list of checks as executed by the canonical entry point:
+1. ...
+2. ...
+3. ...
+
+## Quick Reference
+- **Run all local checks:** `...`
+- **Run CI locally:** `...`
+- **Add a new check:** ...
 
 ## Source Index
-- `path:line-line` → what this file contributes
-
-## Observed Command Chain
-- ordered list of checks from the main command
+| File | What It Contributes |
+|------|-------------------|
+| `path:line-line` | ... |
 ```
 
 ## Output Requirements
 
-Your harness map must:
+Write the harness map to `HARNESS.md` in the repository root. This file must:
 
 - identify the **single best local entrypoint** if one exists
 - show where each layer is enforced
@@ -249,18 +297,28 @@ Your harness map must:
 - include exact file paths
 - include line numbers when they materially improve traceability
 - describe what exists before suggesting changes
+- use tables for scannable layer summaries
+- include a quick reference section for operators
 
 ## Good Output Example
 
 ```markdown
+# myrepo – Harness Map
+
 ## Canonical Entry Point
 - `justfile:22-29` defines `check *args:` and runs Ruff, Import Linter, ty, docs checks, ast-grep, pytest, and Zig checks.
 
-## Layer 2: Architecture Boundaries
-- `pyproject.toml:80-110` defines four Import Linter forbidden contracts.
+## Harness Layers
 
-## Layer 6: CI Matrix
-- `.github/workflows/ci.yml:13-79` runs seven matrix tasks with `fail-fast: false`.
+### Layer 2: Architecture Boundaries
+| Contract | Source | Forbidden | Config |
+|----------|--------|-----------|--------|
+| core-api | src/core | src/plugins | pyproject.toml:80-110 |
+
+### Layer 6: CI Matrix
+| Job | Triggers | Gate | Config |
+|-----|----------|------|--------|
+| test | push | all checks | .github/workflows/ci.yml:13-79 |
 ```
 
 ## Bad Output Example
@@ -272,8 +330,8 @@ It has some tests and some linting.
 
 ## Handoff
 
-Common next steps after this skill:
+After generating `HARNESS.md`:
 
-- generate a condensed harness summary for operators
-- compare two repos' harnesses
+- commit it to the repo so it stays current
 - use `plan-phase` if the user wants to add or improve a harness layer
+- compare two repos' `HARNESS.md` files to understand their differences
